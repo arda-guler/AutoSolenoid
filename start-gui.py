@@ -140,5 +140,6 @@ create_entry("Stroke Step", "mm", "float")
 create_entry("View Edge Padding", "mm", "float")
 create_entry("Export Filename", "<None>", "string")
 create_entry("Export Video", "(0/1)", "int")
+create_entry("Density Plot Max.", "T", "float")
 
 mw.mainloop()

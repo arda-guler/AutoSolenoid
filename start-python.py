@@ -25,9 +25,10 @@ d_stroke = 1 # how many mm per analysis the plunger will move
 view_padding = 30 # how many mm of padding from the edges of the solenoid the bitmap images will have
 filename_main = "autocoil"
 export_video = True # requires moviepy
+plot_max_density = 1 # Tesla
 # - - - - -
 
 inputs = [N_coil, L_coil, I_coil, r_in_coil, D_wire, r_plunger, L_plunger, r_spring, L_spring,
           mtl_plunger, L_stroke, r_minor_core, L_in_core, t_r_core, t_a1_core, t_a2_core, mtl_core,
-          d_stroke, view_padding, filename_main, export_video]
+          d_stroke, view_padding, filename_main, export_video, plot_max_density]
 autoAnalyze(inputs)

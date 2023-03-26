@@ -181,13 +181,10 @@ def FEMM_GeneratePlunger(plunger, plunger_offset):
 
     FEMM_plungerlabel(plunger, plunger_offset)
 
-    femm.mi_selectlabel(labelpos[0], labelpos[1])
-    femm.mi_setblockprop(plunger.mtl, 1, 1e-3, "<None>", 0, 0, 0)
-    femm.mi_clearselected()
-
     return labelpos[0], labelpos[1]
 
-def generate_FEMM_design(coil, plunger, magcore, plunger_offset=0, plunger_max_offset=0, filename="autocoil", dirname="autocoil", view_padding=10):
+def generate_FEMM_design(coil, plunger, magcore, plunger_offset=0, plunger_max_offset=0,
+                         filename="autocoil", dirname="autocoil", view_padding=10, max_density=1):
     femm.openfemm(femmpath="C:/femm42/bin")
 
     # axissymmetric magnetics problem in millimeters
@@ -217,7 +214,7 @@ def generate_FEMM_design(coil, plunger, magcore, plunger_offset=0, plunger_max_o
     femm.mi_loadsolution()
     z_force = FEMM_forceintegral(x_plunger, y_plunger)
     femm.mo_hidegrid()
-    femm.mo_showdensityplot(1, 0, 1, 0, "bmag")
+    femm.mo_showdensityplot(1, 0, max_density, 0, "bmag")
 
     x1_zoom = -view_padding
     y1_zoom = coil.L * 0.5 + magcore.t_a1 + view_padding
@@ -265,6 +262,7 @@ def autoAnalyze(inputs):
     view_padding = inputs[18]
     filename_main = inputs[19]
     export_video = inputs[20]
+    max_density = inputs[21]
 
     print("Generating design...")
     s1 = Coil(N_coil, L_coil, I_coil, r_in_coil, D_wire)
@@ -299,7 +297,7 @@ def autoAnalyze(inputs):
 
         current_force, bitmap_filename = generate_FEMM_design(s1, p1, c1, current_offset,
                                                               plunger_offset - n_stroke * d_stroke,
-                                                              filename, filename_main, view_padding)
+                                                              filename, filename_main, view_padding, max_density)
         offsets.append(i * d_stroke)
         forces.append(current_force)
         bitmap_filenames.append(bitmap_filename)
