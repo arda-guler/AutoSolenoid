@@ -49,12 +49,6 @@ class Plunger:
         labelpos = [(n2[0] + n4[0]) * 0.5, (n2[1] + n4[1]) * 0.5]
         return nodes, labelpos
 
-    def get_rect(self):
-        x1, y1 = 0, self.L / 2
-        x2, y2 = self.r, -self.L / 2
-
-        return x1, y1, x2, y2
-
 class MagneticCore:
     def __init__(self, coil, r_minor, L_in, t_r, t_a1, t_a2, mtl):
         self.coil = coil
@@ -114,10 +108,11 @@ def FEMM_coillabel(coil):
     femm.mi_clearselected()
 
 def FEMM_plungerlabel(plunger, offset):
-    x1, y1, x2, y2 = plunger.get_rect()
-    y1 += offset
-    y2 += offset
-    x, y = (x1 + x2) * 0.5, (y1 + y2) * 0.5
+    _, labelpos = plunger.get_nodes()
+    x = labelpos[0]
+    y = labelpos[1]
+
+    y += offset
 
     femm.mi_addblocklabel(x, y)
     femm.mi_selectlabel(x, y)
@@ -184,7 +179,7 @@ def FEMM_GeneratePlunger(plunger, plunger_offset):
     for cn in connectlist:
         femm.mi_addsegment(cn[0][0], cn[0][1], cn[1][0], cn[1][1])
 
-    femm.mi_addblocklabel(labelpos[0], labelpos[1])
+    FEMM_plungerlabel(plunger, plunger_offset)
 
     femm.mi_selectlabel(labelpos[0], labelpos[1])
     femm.mi_setblockprop(plunger.mtl, 1, 1e-3, "<None>", 0, 0, 0)
