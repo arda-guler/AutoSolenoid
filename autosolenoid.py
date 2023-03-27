@@ -185,7 +185,7 @@ def FEMM_GeneratePlunger(plunger, plunger_offset):
 
 def generate_FEMM_design(coil, plunger, magcore, plunger_offset=0, plunger_max_offset=0,
                          filename="autocoil", dirname="autocoil", view_padding=10, max_density=1):
-    femm.openfemm(femmpath="C:/femm42/bin")
+    femm.openfemm()
 
     # axissymmetric magnetics problem in millimeters
     femm.newdocument(0)
