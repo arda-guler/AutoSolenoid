@@ -11,9 +11,9 @@ Solenoid actuator design and analysis done quick. Built on pyFEMM.
  
 ## How to Use
 
-1. To start the graphical interface, **run start-gui.py**. If you don't want the graphical interface **run start-python.py**.
+1. To start the graphical interface, **run start-gui.py**. If you don't want the graphical interface **open start-python.py for editing**.
 2. **Enter design inputs**.
-3. If using the GUI, **click on PERFORM ANALYSIS**. Otherwise, run the python script.
+3. If using the GUI, **click on PERFORM ANALYSIS**. Otherwise, **run the python script**.
 4. **Wait** until FEMM analyses are complete. The console window will tell how many of the analyses are completed.
 5. **Navigate to your export directory** (the filename you chose) to see the results and FEMM models.
 
