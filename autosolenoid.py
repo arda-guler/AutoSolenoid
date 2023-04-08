@@ -68,8 +68,8 @@ class MagneticCore:
         n4 = [x1, y2]
         n5 = [x2, y2]
         n6 = [x2, y1]
-        n7 = [x1, y1]
-        n8 = [x1, y1 - self.L_in]
+        n7 = [self.r_minor, y1]
+        n8 = [self.r_minor, y1 - self.L_in]
         n9 = [0, y1 - self.L_in]
         nodes = [n0, n1, n2, n3, n4, n5, n6, n7, n8, n9]
 
